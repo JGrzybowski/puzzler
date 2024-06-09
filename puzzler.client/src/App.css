@@ -9,3 +9,15 @@ th, td {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+line {
+    stroke-width: 6;
+}
+
+.found-word-line{
+    stroke: darkred;
+}
+
+.guess-word-line{
+    stroke: cornflowerblue;
+}

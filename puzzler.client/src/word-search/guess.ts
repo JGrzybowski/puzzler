@@ -1,7 +1,4 @@
-interface ColRow {
-    col: number;
-    row: number;
-}
+import {ColRow} from "./types.ts";
 
 export function isHorizontal(start: ColRow, end: ColRow): boolean {
     return start.row === end.row;
