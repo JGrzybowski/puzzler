@@ -1,0 +1,6 @@
+@Puzzler.Server_HostAddress = http://localhost:5136
+
+GET {{Puzzler.Server_HostAddress}}/puzzle/wordsearch/1
+Accept: application/json
+
+###
