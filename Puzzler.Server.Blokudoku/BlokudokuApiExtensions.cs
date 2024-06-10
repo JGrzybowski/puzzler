@@ -1,4 +1,7 @@
-namespace Puzzler.Server;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
+namespace Puzzler.Server.Blokudoku;
 
 public static class BlokudokuApiExtensions
 {
@@ -10,12 +13,12 @@ public static class BlokudokuApiExtensions
     
     public static RouteHandlerBuilder ServeBlokudokuPuzzle(this WebApplication app)
     {
-        return app.MapGet("api/blokudoku/{id}", (int id, BlokudokuPuzzle puzzle) =>
+        return app.MapGet("api/blokudoku/{id}", (int id, Puzzle puzzle) =>
         {
             if (id != 0)
                 return Results.NotFound();
 
-            var puzzleDto = new BlokudokuPuzzleDto
+            var puzzleDto = new PuzzleDto
             {
                 Id = puzzle.Id,
                 Rows = puzzle.Rows,
@@ -31,7 +34,7 @@ public static class BlokudokuApiExtensions
 
     public static RouteHandlerBuilder GuessBlokudokuPuzzle(this WebApplication app)
     {
-        return app.MapPost("api/blokudoku/{id}/guess", async (int id, BlokudokuPuzzle puzzle, BlokudokuGuess guess) =>
+        return app.MapPost("api/blokudoku/{id}/guess", async (int id, Puzzle puzzle, Guess guess) =>
         {
             if (id != 0)
                 return Results.NotFound();

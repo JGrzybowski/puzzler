@@ -1,3 +1,4 @@
+using Puzzler.Server.Blokudoku;
 using Puzzler.Server.WordSearch;
 
 namespace Puzzler.Server;
@@ -13,7 +14,7 @@ public class Program
         builder.Services.AddAuthorization();
 
         builder.Services.AddSingleton(WordSearch.Puzzle.GenerateExample());
-        builder.Services.AddSingleton(BlokudokuPuzzle.GenerateExample());
+        builder.Services.AddSingleton(Blokudoku.Puzzle.GenerateExample());
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();

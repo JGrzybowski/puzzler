@@ -1,24 +1,18 @@
 using System.Text.Json;
 
-namespace Puzzler.Server;
+namespace Puzzler.Server.Blokudoku;
 
-public record BlokudokuPosition
-{
-    public int Row { get; set; }
-    public int Col { get; set; }
-}
-
-public class BlokudokuPuzzle
+public class Puzzle
 {
     public int Id { get; set; }
     public int Rows { get; set; }
     public int Cols { get; set; }
     public int[][] HintRows { get; set; }
     public int[][] HintCols { get; set; }
-    public BlokudokuPosition[] Solution { get; set; }
+    public Position[] Solution { get; set; }
     public bool IsSolved { get; set; }
 
-    public static BlokudokuPuzzle GenerateExample()
+    public static Puzzle GenerateExample()
     {
         var puzzleJson = """
                          {
@@ -47,23 +41,8 @@ public class BlokudokuPuzzle
                          "isSolved": false
                          }
                          """;
-        var puzzle = JsonSerializer.Deserialize<BlokudokuPuzzle>(puzzleJson,
+        var puzzle = JsonSerializer.Deserialize<Puzzle>(puzzleJson,
             new JsonSerializerOptions() { PropertyNameCaseInsensitive = true,});
         return puzzle;
     }
-}
-
-public record BlokudokuGuess
-{
-    public BlokudokuPosition[] SelectedCells { get; set; }
-}
-
-public class BlokudokuPuzzleDto
-{
-    public int Id { get; set; }
-    public int Rows { get; set; }
-    public int Cols { get; set; }
-    public int[][] HintRows { get; set; }
-    public int[][] HintCols { get; set; }
-    public bool IsSolved { get; set; }
 }

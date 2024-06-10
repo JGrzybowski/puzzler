@@ -31,6 +31,7 @@
     <ProjectReference Include="..\puzzler.client\puzzler.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\Puzzler.Server.Blokudoku\Puzzler.Server.Blokudoku.csproj" />
     <ProjectReference Include="..\Puzzler.Server.WordSearch\Puzzler.Server.WordSearch.csproj" />
     <ProjectReference Include="..\Puzzler.ServiceDefaults\Puzzler.ServiceDefaults.csproj" />
   </ItemGroup>
