@@ -2,7 +2,6 @@ export interface FoundWordProps {
     word: string;
     start: {col: number, row: number};
     end: {col: number, row: number};
-    cellSize: number;
 }
 
 interface BoardLineProps {
