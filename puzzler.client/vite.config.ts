@@ -46,6 +46,10 @@ export default defineConfig({
             '^/api/wordsearch': {
                 target,
                 secure: false
+            },
+            '^/api/blokudoku': {
+                target,
+                secure: false
             }
         },
         port: 5173,

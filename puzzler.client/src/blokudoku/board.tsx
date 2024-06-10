@@ -1,36 +1,67 @@
 import './blokudoku.css';
 import {Cell} from "./cell.tsx";
 import {useState} from "react";
+import {ColRow} from "../word-search/types.ts";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 function range(start: number, end: number): number[] {
     return Array.from({length: end - start + 1}, (_, i) => start + i);
 }
 
 interface BoardProps {
+    id: number;
     rows: number;
     cols: number;
     hintRows: number[][];
     hintCols: number[][];
+    enabled: boolean;
 }
 
 function createInitialState(rows: number, cols: number): boolean[][] {
     return range(0, rows - 1).map(() => range(0, cols - 1).map(() => false));
 }
 
-export function Board({rows, cols, hintRows, hintCols}: BoardProps) {
+function fetchGuess(puzzleId: number, guess: { selectedCells: ColRow[] }) {
+    return fetch(`/api/blokudoku/${puzzleId}/guess`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(guess)
+    });
+}
+
+
+export function Board({id, rows, cols, hintRows, hintCols, enabled}: BoardProps) {
+    const queryClient = useQueryClient();
     const [boardState, setBoardState] = useState(createInitialState(rows, cols));
 
     function toggleCell(col: number, row: number) {
         return () => {
-            const newBoardState = boardState.map((r, rowIndex) => r.map((cell, colIndex) => {
+            const newBoardState = boardState.map((r, rowIndex) => r.map((colored, colIndex) => {
                 if (row === rowIndex && col === colIndex) {
-                    return !cell;
+                    return !colored;
                 }
-                return cell;
+                return colored;
             }));
             setBoardState(newBoardState);
         }
     }
+
+    function buildGuess() {
+        const guess = boardState.flatMap((row, rowIndex) =>
+            row.map((colored, colIndex) => ({row: rowIndex, col: colIndex, colored}))
+                .filter(c => c.colored))
+            .map(c => ({row: c.row, col: c.col}));
+        return {selectedCells: guess};
+    }
+
+    const guessMutation = useMutation({
+        mutationFn: (guess: {selectedCells: ColRow[]}) => fetchGuess(id, guess),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ['blokudoku', id]});
+        }
+    })
 
     const cellSize = "50px";
 
@@ -69,7 +100,7 @@ export function Board({rows, cols, hintRows, hintCols}: BoardProps) {
 
                 {cells}
             </div>
-            <button>Guess</button>
+            {enabled ?<button onClick={() => {guessMutation.mutate(buildGuess())}}>Guess</button> : null}   
         </>
     )
 }
