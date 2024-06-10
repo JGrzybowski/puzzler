@@ -1,4 +1,7 @@
-namespace Puzzler.Server;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
+namespace Puzzler.Server.WordSearch;
 
 public static class WordSearchApiExtensions
 {
@@ -10,12 +13,12 @@ public static class WordSearchApiExtensions
     
     public static RouteHandlerBuilder ServeWordSearchPuzzle(this WebApplication app)
     {
-        return app.MapGet("api/wordsearch/{id}", (int id, WordSearchPuzzle puzzle) =>
+        return app.MapGet("api/wordsearch/{id}", (int id, Puzzle puzzle) =>
         {
             if (id != 0)
                 return Results.NotFound();
 
-            var puzzleDto = new WordSearchPuzzleDto
+            var puzzleDto = new PuzzleDto
             {
                 Id = puzzle.Id,
                 Array = puzzle.Array,
@@ -32,7 +35,7 @@ public static class WordSearchApiExtensions
 
     public static RouteHandlerBuilder GuessWordSearchPuzzle(this WebApplication app)
     {
-        return app.MapPost("api/wordsearch/{id}/guess", async (int id, WordSearchPuzzle puzzle, WordSearchGuess guess) =>
+        return app.MapPost("api/wordsearch/{id}/guess", async (int id, Puzzle puzzle, Guess guess) =>
         {
             if (id != 0)
                 return Results.NotFound();

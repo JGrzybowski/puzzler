@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzler.ServiceDefaults", "
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "puzzler.client", "puzzler.client\puzzler.client.esproj", "{FB124647-0F5D-4786-9471-7C2C8FB52D57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzler.Server.WordSearch", "Puzzler.Server.WordSearch\Puzzler.Server.WordSearch.csproj", "{96C10E07-FDA5-4283-8851-6BAA5E283608}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{FB124647-0F5D-4786-9471-7C2C8FB52D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB124647-0F5D-4786-9471-7C2C8FB52D57}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB124647-0F5D-4786-9471-7C2C8FB52D57}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{96C10E07-FDA5-4283-8851-6BAA5E283608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96C10E07-FDA5-4283-8851-6BAA5E283608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96C10E07-FDA5-4283-8851-6BAA5E283608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96C10E07-FDA5-4283-8851-6BAA5E283608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
