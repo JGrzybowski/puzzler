@@ -61,8 +61,8 @@ export function Board({rows, cols, hintRows, hintCols}: BoardProps) {
 
     return (<>
             <div className="blokudoku-grid" style={{
-                gridTemplateRows: `repeat(${rows + 1},${cellSize})`,
-                gridTemplateColumns: `repeat(${cols + 1}, ${cellSize})`
+                gridTemplateRows: `minmax(${cellSize}, auto) repeat(${rows},${cellSize})`,
+                gridTemplateColumns: `minmax(${cellSize}, auto) repeat(${cols}, ${cellSize})`
             }}>
                 {hintRowsDivs}
                 {hintColsDivs}
