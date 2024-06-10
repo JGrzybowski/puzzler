@@ -7,4 +7,5 @@ export interface WordSearchPuzzle {
         start: {col: number, row: number};
         end: {col: number, row: number};
     }[];
+    isSolved: boolean;
 }

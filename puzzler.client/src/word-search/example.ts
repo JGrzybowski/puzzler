@@ -1,4 +1,5 @@
 export const wordSearchExample = {
+    "id": 0,
     "array": [
         "G", "N", "L", "S", "P",
         "Y", "O", "X", "N", "A",
@@ -8,30 +9,30 @@ export const wordSearchExample = {
     ],
     "rows": 5,
     "cols": 5,
-    "words": [
-        {
-            "word": "panda",
-            "start": {
-                "col": 4,
-                "row": 0
-            },
-            "end": {
-                "col": 4, 
-                "row": 4
-            }
-        },
-        {
-            "word": "goat",
-            "start": {
-                "col": 0,
-                "row": 0
-            },
-            "end": {
-                "col": 0,
-                "row": 3
-            }
-        }
-    ],
+    // "words": [
+    //     {
+    //         "word": "panda",
+    //         "start": {
+    //             "col": 4,
+    //             "row": 0
+    //         },
+    //         "end": {
+    //             "col": 4, 
+    //             "row": 4
+    //         }
+    //     },
+    //     {
+    //         "word": "goat",
+    //         "start": {
+    //             "col": 0,
+    //             "row": 0
+    //         },
+    //         "end": {
+    //             "col": 0,
+    //             "row": 3
+    //         }
+    //     }
+    // ],
     "foundWords": [{
         "word": "panda",
         "start": {
